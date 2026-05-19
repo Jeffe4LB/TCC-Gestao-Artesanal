@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Documentação interna / TCC (não versionar)
+DOCUMENTACAO_PROJETO.md
+Docs/

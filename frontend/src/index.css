@@ -1,0 +1,400 @@
+/* =========================
+   🎨 DESIGN SYSTEM
+========================= */
+:root {
+  --primary: #007681;
+  --primary-hover: #005f66;
+
+  --secondary: #e2aaaa;
+  --secondary-hover: #d48f8f;
+
+  --bg: #f4f4f5;
+  --bg-card: #ffffff;
+  --text: #18181b;
+  --text-muted: #71717a;
+  --border: #e4e4e7;
+
+  --success: #166534;
+  --error: #b91c1c;
+
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   🌍 BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+a {
+  color: var(--primary);
+}
+
+/* =========================
+   🔄 LOADING / HOME
+========================= */
+.loading-screen {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.public-home {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.link-button {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.link-button:hover {
+  background: var(--primary-hover);
+}
+
+/* =========================
+   🔐 AUTH
+========================= */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 22rem;
+}
+
+.auth-card h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+}
+
+/* =========================
+   🧱 LAYOUT
+========================= */
+
+/* Ant Design AppLayout — título do Sider (largura colapsada ~64px) */
+.app-layout-sider-brand {
+  padding: 16px 14px 12px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 8px;
+}
+
+.app-layout-sider-brand-line {
+  display: inline;
+}
+
+.app-layout-sider-brand-line:first-child::after {
+  content: "\00a0";
+}
+
+.ant-layout-sider-collapsed .app-layout-sider-brand {
+  padding: 10px 6px 8px;
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.ant-layout-sider-collapsed .app-layout-sider-brand-line {
+  display: block;
+}
+
+.ant-layout-sider-collapsed .app-layout-sider-brand-line:first-child::after {
+  content: none;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #18181b 0%, #007681 140%);
+  color: #fafafa;
+  padding: 1rem 0;
+}
+
+.sidebar-brand {
+  padding: 0 1rem 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid #3f3f46;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0 0.5rem;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #e4e4e7;
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* =========================
+   📦 MAIN
+========================= */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.content {
+  padding: 1.25rem;
+}
+
+/* =========================
+   🧩 CARDS
+========================= */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-top: 1rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+/* =========================
+   🛠 TOOLBAR / FORM
+========================= */
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar input,
+.toolbar select,
+.form input,
+.form select,
+.form textarea {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* FOCUS */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0, 118, 129, 0.15);
+}
+
+/* =========================
+   🔘 BOTÕES
+========================= */
+.form button,
+button[type="button"] {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: var(--secondary) !important;
+  color: #18181b !important;
+}
+
+/* =========================
+   📊 TABLE
+========================= */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.table th {
+  color: var(--text-muted);
+}
+
+.table tr:hover {
+  background: #fafafa;
+}
+
+/* =========================
+   🔔 BADGES
+========================= */
+.nav-badge,
+.dashboard-badge {
+  background: var(--secondary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.65rem;
+}
+
+/* =========================
+   🏠 HERO (CORRIGIDO)
+========================= */
+.home-welcome {
+  margin: -1.25rem -1.25rem 0;
+}
+
+.home-welcome-hero {
+  position: relative;
+  min-height: min(52vh, 440px);
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+}
+
+.home-welcome-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-welcome-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(24, 24, 27, 0.88) 0%,
+    rgba(0, 118, 129, 0.55) 60%,
+    rgba(226, 170, 170, 0.35) 100%
+  );
+}
+
+.home-welcome-content {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem 1.75rem 2.85rem;
+  max-width: 38rem;
+  color: #fafafa;
+}
+
+.home-welcome-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.88;
+}
+
+.home-welcome-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 700;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .home-welcome-hero {
+    min-height: 360px;
+  }
+
+  .home-welcome-content {
+    padding: 1.85rem 1.2rem 2.1rem;
+  }
+}
+
+/* =========================
+   🍞 TOASTS
+========================= */
+.toast-success {
+  background: #ecfdf5;
+  color: var(--success);
+}
+
+.toast-error {
+  background: #fef2f2;
+  color: var(--error);
+}
+
+/* Header — sino de notificações */
+.header-notifications-bell-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-notifications-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--error);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.1rem;
+  text-align: center;
+  pointer-events: none;
+}

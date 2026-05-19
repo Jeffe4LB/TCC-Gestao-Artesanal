@@ -1,0 +1,221 @@
+/* =========================
+   📊 DASHBOARD (ALINHADO AO TEMA)
+========================= */
+.dashboard-page {
+  --dash-radius: 14px;
+  --dash-edge: var(--border);
+  --dash-ink: var(--text);
+  --dash-muted: var(--text-muted);
+
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* =========================
+   🧠 HEADER
+========================= */
+.dashboard-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--dash-edge);
+}
+
+.dashboard-title {
+  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  color: var(--dash-ink);
+}
+
+.dashboard-subtitle {
+  font-size: 0.95rem;
+  color: var(--dash-muted);
+}
+
+.dashboard-meta {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+}
+
+/* =========================
+   🎛 FILTROS
+========================= */
+.dashboard-filters-bar {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    rgba(0, 118, 129, 0.05) 100%
+  );
+  border: 1px solid var(--dash-edge);
+  border-radius: var(--dash-radius);
+  padding: 1rem;
+}
+
+.dashboard-field input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 118, 129, 0.15);
+}
+
+/* =========================
+   💰 KPIs
+========================= */
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+}
+
+.dashboard-kpi {
+  position: relative;
+  padding: 1.1rem;
+  border-radius: var(--dash-radius);
+  background: #fff;
+  border: 1px solid var(--dash-edge);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.dashboard-kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 CORES AGORA PADRONIZADAS */
+.dashboard-kpi--amber::before {
+  background: linear-gradient(180deg, var(--primary), var(--primary-hover));
+}
+
+.dashboard-kpi--rose::before {
+  background: linear-gradient(180deg, var(--secondary), var(--secondary-hover));
+}
+
+.dashboard-kpi--slate::before {
+  background: linear-gradient(180deg, #a7a8aa, #6b7280);
+}
+
+.dashboard-kpi::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+/* =========================
+   📦 PANELS
+========================= */
+.dashboard-panel {
+  background: #fff;
+  border: 1px solid var(--dash-edge);
+  border-radius: var(--dash-radius);
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.dashboard-panel--cash {
+  background: linear-gradient(
+    180deg,
+    #fff 0%,
+    rgba(0, 118, 129, 0.03) 100%
+  );
+}
+
+.dashboard-panel-title {
+  font-weight: 700;
+  color: var(--dash-ink);
+}
+
+.dashboard-panel-badge {
+  background: rgba(0, 118, 129, 0.08);
+  color: var(--primary);
+}
+
+/* =========================
+   💵 CASHFLOW
+========================= */
+.dashboard-cash-cell {
+  border-radius: 10px;
+  border: 1px solid var(--dash-edge);
+  padding: 0.9rem;
+  background: #fff;
+}
+
+/* ENTRADA (verde) */
+.dashboard-cash-cell--in {
+  border-color: rgba(0, 118, 129, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 118, 129, 0.08),
+    #fff
+  );
+}
+
+/* SAÍDA (rosa) */
+.dashboard-cash-cell--out {
+  border-color: rgba(226, 170, 170, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(226, 170, 170, 0.25),
+    #fff
+  );
+}
+
+/* SALDO */
+.dashboard-cash-cell--net {
+  border-color: rgba(0, 118, 129, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 118, 129, 0.05),
+    #fff
+  );
+}
+
+/* =========================
+   🔗 LINKS
+========================= */
+.dashboard-pill-link {
+  color: var(--primary);
+  background: rgba(0, 118, 129, 0.08);
+  border: 1px solid rgba(0, 118, 129, 0.2);
+}
+
+.dashboard-pill-link:hover {
+  background: rgba(0, 118, 129, 0.15);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   📱 RESPONSIVO
+========================= */
+@media (max-width: 960px) {
+  .dashboard-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .dashboard-kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   ✨ ANTD CARDS
+========================= */
+.ant-card {
+  transition: all 0.25s ease;
+}
+
+.ant-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 118, 129, 0.12);
+}
