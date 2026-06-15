@@ -5,8 +5,8 @@ import {
   useId,
   useState,
 } from "react";
-import { createUserNotification } from "../api/notifications";
-import { NOTIFICATIONS_REFRESH_EVENT } from "../constants/notificationsEvents";
+import { criarNotificacaoUsuario } from "../api/notificacoes";
+import { EVENTO_ATUALIZAR_NOTIFICACOES } from "../constants/eventosNotificacoes";
 
 type ToastVariant = "success" | "error";
 
@@ -37,9 +37,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       }, 4500);
       if (options?.persist) {
         const level = variant === "success" ? "success" : "error";
-        void createUserNotification({ level, title: message, body: "" })
+        void criarNotificacaoUsuario({ nivel: level, titulo: message, mensagem: "" })
           .then(() => {
-            window.dispatchEvent(new Event(NOTIFICATIONS_REFRESH_EVENT));
+            window.dispatchEvent(new Event(EVENTO_ATUALIZAR_NOTIFICACOES));
           })
           .catch(() => {});
       }

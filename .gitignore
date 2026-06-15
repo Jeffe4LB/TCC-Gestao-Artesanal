@@ -1,10 +1,63 @@
-# macOS
+# ---------------------------------------------------------------------------
+# Sistema operacional
+# ---------------------------------------------------------------------------
 .DS_Store
 **/.DS_Store
+Thumbs.db
 
-# TypeScript build cache
+# ---------------------------------------------------------------------------
+# Editores / IDEs
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+
+# ---------------------------------------------------------------------------
+# Python / Django
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Ambientes virtuais
+backend/venv/
+venv/
+.venv/
+
+# Variáveis de ambiente — NUNCA commitar
+.env
+.env.*
+!.env.example
+
+# Banco local (desenvolvimento)
+*.sqlite3
+*.sqlite3-journal
+backend/db.sqlite3
+
+# Mídia / uploads de runtime
+backend/media/
+*.log
+
+# ---------------------------------------------------------------------------
+# Frontend (Node / Vite)
+# ---------------------------------------------------------------------------
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/playwright-report/
+frontend/test-results/
 *.tsbuildinfo
 
+# ---------------------------------------------------------------------------
 # Documentação interna / TCC (não versionar)
+# ---------------------------------------------------------------------------
 DOCUMENTACAO_PROJETO.md
 Docs/

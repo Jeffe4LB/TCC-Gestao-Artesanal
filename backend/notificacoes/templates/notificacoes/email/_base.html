@@ -1,0 +1,39 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block titulo %}Gestão Artesanal{% endblock %}</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f6fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#222;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#f4f6fa;padding:24px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.08);">
+          <tr>
+            <td style="background:#1f3a5f;color:#ffffff;padding:18px 24px;font-size:16px;font-weight:600;">
+              {% block cabecalho %}Gestão Artesanal{% endblock %}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px;font-size:14px;line-height:1.55;">
+              {% block conteudo %}{% endblock %}
+              {% if link_sistema %}
+                <p style="margin:24px 0 8px;">
+                  <a href="{{ link_sistema }}" style="background:#1f3a5f;color:#ffffff;padding:10px 18px;border-radius:8px;text-decoration:none;display:inline-block;">
+                    Acessar o sistema
+                  </a>
+                </p>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:14px 24px;background:#f8fafc;color:#64748b;font-size:12px;">
+              Este é um e-mail automático enviado pelo sistema Gestão Artesanal.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

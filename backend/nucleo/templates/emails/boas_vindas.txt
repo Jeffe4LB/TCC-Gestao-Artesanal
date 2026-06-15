@@ -1,0 +1,9 @@
+Olá, {{ nome }}!
+
+Foi criada uma conta para você no sistema Gestão Artesanal.
+
+Acesse: {{ login_url }}
+E-mail: {{ email }}
+Senha temporária: {{ senha_temporaria }}
+
+Por segurança, sua senha deverá ser trocada no primeiro acesso.

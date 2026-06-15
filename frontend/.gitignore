@@ -1,4 +1,11 @@
 node_modules/
 dist/
-.DS_Store
+.vite/
+*.tsbuildinfo
+
+# Local env do Vite
+.env
+.env.*.local
 *.local
+
+.DS_Store

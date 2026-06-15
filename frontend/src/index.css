@@ -50,10 +50,68 @@ a {
   color: var(--text-muted);
 }
 
-.public-home {
-  max-width: 40rem;
+.public-home-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.public-home-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 26rem;
+  padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.public-home-inner--bottom {
+  max-width: none;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) clamp(1.75rem, 5vw, 2.5rem);
+}
+
+.public-home-actions {
+  max-width: 22rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 1rem 1.1rem 1.15rem;
+  border-radius: 14px;
+  background: rgba(255, 252, 248, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}
+
+.public-home-registro {
+  display: block;
+  margin-top: 12px;
+}
+
+.public-home-card {
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 14px !important;
+  background: rgba(255, 252, 248, 0.94) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+}
+
+.public-home-card .home-welcome-kicker {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.public-home-title {
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+  color: #1a2e28 !important;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.public-home-lead {
+  color: var(--text-muted);
+  margin-bottom: 1.25rem !important;
 }
 
 .link-button {
@@ -69,6 +127,27 @@ a {
 
 .link-button:hover {
   background: var(--primary-hover);
+}
+
+/* Datas ISO em tabelas (YYYY-MM-DD) — uma linha, sem quebra no hífen */
+.celula-data-iso {
+  white-space: nowrap;
+  min-width: 7.5rem;
+}
+
+/* Relatórios — filtros colapsáveis no mobile */
+.relatorio-filtros-mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .relatorio-filtros-desktop {
+    display: none;
+  }
+
+  .relatorio-filtros-mobile {
+    display: block;
+  }
 }
 
 /* =========================
@@ -298,15 +377,26 @@ button[type="button"] {
    🏠 HERO (CORRIGIDO)
 ========================= */
 .home-welcome {
-  margin: -1.25rem -1.25rem 0;
+  margin: -24px -24px 0;
+  width: calc(100% + 48px);
+  max-width: none;
 }
 
 .home-welcome-hero {
   position: relative;
-  min-height: min(52vh, 440px);
-  border-radius: 0 0 12px 12px;
+  min-height: calc(100vh - 64px);
+  min-height: calc(100dvh - 64px);
+  border-radius: 0 0 14px 14px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.home-welcome-hero--splash {
+  box-shadow: none;
 }
 
 .home-welcome-photo {
@@ -315,55 +405,154 @@ button[type="button"] {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 40%;
 }
 
 .home-welcome-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    125deg,
-    rgba(24, 24, 27, 0.88) 0%,
-    rgba(0, 118, 129, 0.55) 60%,
-    rgba(226, 170, 170, 0.35) 100%
+    115deg,
+    rgba(28, 20, 18, 0.74) 0%,
+    rgba(36, 26, 22, 0.36) 42%,
+    rgba(12, 18, 28, 0.08) 100%
   );
+}
+
+.home-welcome-overlay--splash {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(12, 20, 32, 0.45) 0%,
+      transparent 28%
+    ),
+    linear-gradient(
+      to top,
+      rgba(12, 16, 24, 0.35) 0%,
+      rgba(12, 16, 24, 0.08) 28%,
+      transparent 55%
+    );
+  pointer-events: none;
 }
 
 .home-welcome-content {
   position: relative;
   z-index: 1;
-  padding: 2.5rem 1.75rem 2.85rem;
-  max-width: 38rem;
+  padding: clamp(2rem, 5vw, 3.25rem) clamp(1.5rem, 4vw, 2.75rem);
+  max-width: 36rem;
   color: #fafafa;
 }
 
+.home-welcome-content--top {
+  margin-bottom: auto;
+  width: 100%;
+  max-width: none;
+  padding: clamp(1.75rem, 5vw, 2.75rem) clamp(1.5rem, 4vw, 2.5rem) 0;
+  text-align: center;
+}
+
+.home-welcome-content--bottom {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  padding: 0 1.5rem clamp(1.75rem, 5vw, 2.5rem);
+}
+
 .home-welcome-kicker {
+  display: block;
   margin: 0 0 0.5rem;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  opacity: 0.88;
+  color: #e8c87a;
 }
 
 .home-welcome-title {
   margin: 0 0 0.75rem;
   font-size: clamp(1.75rem, 4vw, 2.35rem);
   font-weight: 700;
+  color: #f5f0e6 !important;
+  font-family: Georgia, "Times New Roman", serif;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
 }
 
-/* RESPONSIVO */
-@media (max-width: 600px) {
-  .home-welcome-hero {
-    min-height: 360px;
+.home-welcome-tagline {
+  margin: 0 0 1.25rem !important;
+  max-width: 32rem;
+  color: rgba(245, 240, 230, 0.9) !important;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.home-welcome-cta {
+  display: inline-block;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius);
+  background: rgba(232, 200, 122, 0.92);
+  color: #1a2e28 !important;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.home-welcome-cta:hover {
+  background: #f0d89a;
+  transform: translateY(-1px);
+}
+
+/* RESPONSIVO — hero quase tela cheia */
+@media (max-width: 991px) {
+  .home-welcome {
+    margin: -12px -12px 0;
+    width: calc(100% + 24px);
   }
 
+  .home-welcome-hero {
+    min-height: calc(100vh - 64px);
+    min-height: calc(100dvh - 64px);
+  }
+}
+
+@media (max-width: 600px) {
   .home-welcome-content {
-    padding: 1.85rem 1.2rem 2.1rem;
+    padding: 1.75rem 1.15rem;
+  }
+
+  .public-home-inner--bottom {
+    padding: 0 1rem 1.25rem;
+  }
+
+  .home-welcome-content--bottom {
+    padding: 0 1rem 1.25rem;
   }
 }
 
 /* =========================
    🍞 TOASTS
 ========================= */
+.toast-stack {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: min(420px, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.toast {
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  line-height: 1.45;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  pointer-events: auto;
+}
+
 .toast-success {
   background: #ecfdf5;
   color: var(--success);

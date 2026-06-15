@@ -1,0 +1,15 @@
+Gestão Artesanal — Alerta de estoque baixo
+
+Olá{% if usuario.first_name %}, {{ usuario.first_name }}{% endif %}!
+
+O produto {{ produto.sku }} - {{ produto.nome }} está com saldo abaixo do mínimo cadastrado.
+
+  - Saldo atual:    {{ saldo_atual }} {{ unidade_base }}
+  - Estoque mínimo: {{ produto.estoque_minimo }} {{ unidade_base }}
+
+Recomendamos providenciar a reposição o quanto antes para evitar falta na produção ou nas vendas.
+
+{% if link_sistema %}Acesse o sistema: {{ link_sistema }}{% endif %}
+
+—
+Este é um e-mail automático enviado pelo sistema Gestão Artesanal.

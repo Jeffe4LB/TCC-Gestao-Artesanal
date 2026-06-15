@@ -1,102 +1,113 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { RequireCapability } from "./components/RequireCapability";
+import { ExigirCapacidade } from "./components/ExigirCapacidade";
 import { AppLayout } from "./components/layout/AppLayout";
-import { DashboardPage } from "./pages/DashboardPage";
-import { AuthProvider } from "./hooks/useAuth";
+import { PainelPage } from "./pages/PainelPage";
+import { ProvedorAutenticacao } from "./hooks/useAutenticacao";
 import { ToastProvider } from "./hooks/useToast";
-import { CategoriesPage } from "./pages/CategoriesPage";
-import { CustomersPage } from "./pages/CustomersPage";
-import { HomePage } from "./pages/HomePage";
-import { ForgotPasswordPage } from "./pages/ForgotPasswordPage";
-import { LoginPage } from "./pages/LoginPage";
-import { RegisterPage } from "./pages/RegisterPage";
-import { ResetPasswordPage } from "./pages/ResetPasswordPage";
-import { ProductsPage } from "./pages/ProductsPage";
-import { PublicHomePage } from "./pages/PublicHomePage";
-import { SuppliersPage } from "./pages/SuppliersPage";
-import { ProductionRunDetailPage } from "./pages/stock/ProductionRunDetailPage";
-import { ProductionRunsPage } from "./pages/stock/ProductionRunsPage";
-import { RecipesPage } from "./pages/stock/RecipesPage";
-import { StockAlertsPage } from "./pages/stock/StockAlertsPage";
-import { StockBalancesPage } from "./pages/stock/StockBalancesPage";
-import { StockMovementsPage } from "./pages/stock/StockMovementsPage";
-import { AccountsPayablePage } from "./pages/finance/AccountsPayablePage";
-import { AccountsReceivablePage } from "./pages/finance/AccountsReceivablePage";
-import { CashFlowPage } from "./pages/finance/CashFlowPage";
-import { FinanceAlertsPage } from "./pages/finance/FinanceAlertsPage";
-import { ReportFinanceAgingPage } from "./pages/reports/ReportFinanceAgingPage";
-import { ReportFinanceCashFlowReportPage } from "./pages/reports/ReportFinanceCashFlowReportPage";
-import { ReportFinanceOpenPage } from "./pages/reports/ReportFinanceOpenPage";
-import { ReportRevenueByProductPage } from "./pages/reports/ReportRevenueByProductPage";
-import { ReportsHomePage } from "./pages/reports/ReportsHomePage";
-import { UsersAdminPage } from "./pages/UsersAdminPage";
-import { ReportStockLowPage } from "./pages/reports/ReportStockLowPage";
-import { ReportStockMovementsPage } from "./pages/reports/ReportStockMovementsPage";
-import { ReportStockPositionPage } from "./pages/reports/ReportStockPositionPage";
-import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { CategoriasPage } from "./pages/CategoriasPage";
+import { ClientesPage } from "./pages/ClientesPage";
+import { InicioPage } from "./pages/InicioPage";
+import { EsqueciSenhaPage } from "./pages/EsqueciSenhaPage";
+import { EntradaPage } from "./pages/EntradaPage";
+import { CadastroPage } from "./pages/CadastroPage";
+import { RedefinirSenhaPage } from "./pages/RedefinirSenhaPage";
+import { ProdutosPage } from "./pages/ProdutosPage";
+import { PublicInicioPage } from "./pages/InicioPublicoPage";
+import { FornecedoresPage } from "./pages/FornecedoresPage";
+import { DetalheOrdemProducaoPage } from "./pages/estoque/DetalheOrdemProducaoPage";
+import { OrdensProducaoPage } from "./pages/estoque/OrdensProducaoPage";
+import { ReceitasPage } from "./pages/estoque/ReceitasPage";
+import { AlertasEstoquePage } from "./pages/estoque/AlertasEstoquePage";
+import { SaldosEstoquePage } from "./pages/estoque/SaldosEstoquePage";
+import { EntradaCompraPage } from "./pages/estoque/EntradaCompraPage";
+import { SaidasEstoquePage } from "./pages/estoque/SaidasEstoquePage";
+import { MovimentacoesEstoquePage } from "./pages/estoque/MovimentacoesEstoquePage";
+import { ContasPagarPage } from "./pages/financeiro/ContasPagarPage";
+import { ContasReceberPage } from "./pages/financeiro/ContasReceberPage";
+import { DocumentosFinanceirosPage } from "./pages/financeiro/DocumentosFinanceirosPage";
+import { FluxoCaixaPage } from "./pages/financeiro/FluxoCaixaPage";
+import { AlertasFinanceirosPage } from "./pages/financeiro/AlertasFinanceirosPage";
+import { RelatorioEnvelhecimentoPage } from "./pages/relatorios/RelatorioEnvelhecimentoPage";
+import { RelatorioFluxoCaixaPage } from "./pages/relatorios/RelatorioFluxoCaixaPage";
+import { RelatorioContasAbertoPage } from "./pages/relatorios/RelatorioContasAbertoPage";
+import { RelatorioReceitaPorProdutoPage } from "./pages/relatorios/RelatorioReceitaPorProdutoPage";
+import { RelatoriosInicioPage } from "./pages/relatorios/RelatoriosInicioPage";
+import { TrocaSenhaObrigatoriaPage } from "./pages/TrocaSenhaObrigatoriaPage";
+import { UsuariosAdminPage } from "./pages/UsuariosAdminPage";
+import { RelatorioEstoqueAbaixoMinimoPage } from "./pages/relatorios/RelatorioEstoqueAbaixoMinimoPage";
+import { RelatorioMovimentacoesEstoquePage } from "./pages/relatorios/RelatorioMovimentacoesEstoquePage";
+import { RelatorioPosicaoEstoquePage } from "./pages/relatorios/RelatorioPosicaoEstoquePage";
+import { RotaProtegida } from "./rotas/RotaProtegida";
 import "./index.css";
 
 export default function App() {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <AuthProvider>
+        <ProvedorAutenticacao>
         <Routes>
-          <Route path="/" element={<PublicHomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/registro" element={<RegisterPage />} />
-          <Route path="/recuperar-senha" element={<ForgotPasswordPage />} />
-          <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
-          <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<PublicInicioPage />} />
+          <Route path="/login" element={<EntradaPage />} />
+          <Route path="/registro" element={<CadastroPage />} />
+          <Route path="/recuperar-senha" element={<EsqueciSenhaPage />} />
+          <Route path="/redefinir-senha" element={<RedefinirSenhaPage />} />
+          <Route element={<RotaProtegida />}>
+            <Route
+              path="/app/troca-senha-obrigatoria"
+              element={<TrocaSenhaObrigatoriaPage />}
+            />
             <Route element={<AppLayout />}>
-              <Route path="/app" element={<HomePage />} />
+              <Route path="/app" element={<InicioPage />} />
               <Route
                 path="/app/dashboard"
                 element={
-                  <RequireCapability need="dashboard">
-                    <DashboardPage />
-                  </RequireCapability>
+                  <ExigirCapacidade need="painel">
+                    <PainelPage />
+                  </ExigirCapacidade>
                 }
               />
               <Route
                 path="/app/admin/usuarios"
                 element={
-                  <RequireCapability need="manage_users">
-                    <UsersAdminPage />
-                  </RequireCapability>
+                  <ExigirCapacidade need="gerenciar_usuarios">
+                    <UsuariosAdminPage />
+                  </ExigirCapacidade>
                 }
               />
               <Route path="/app/notificacoes" element={<Navigate to="/app/dashboard" replace />} />
-              <Route path="/app/cadastros/categorias" element={<CategoriesPage />} />
-              <Route path="/app/cadastros/fornecedores" element={<SuppliersPage />} />
-              <Route path="/app/cadastros/clientes" element={<CustomersPage />} />
-              <Route path="/app/cadastros/produtos" element={<ProductsPage />} />
-              <Route path="/app/estoque/saldos" element={<StockBalancesPage />} />
-              <Route path="/app/estoque/movimentos" element={<StockMovementsPage />} />
-              <Route path="/app/estoque/alertas" element={<StockAlertsPage />} />
-              <Route path="/app/estoque/receitas" element={<RecipesPage />} />
-              <Route path="/app/estoque/producao" element={<ProductionRunsPage />} />
-              <Route path="/app/estoque/producao/:id" element={<ProductionRunDetailPage />} />
-              <Route path="/app/financeiro/pagar" element={<AccountsPayablePage />} />
-              <Route path="/app/financeiro/receber" element={<AccountsReceivablePage />} />
-              <Route path="/app/financeiro/fluxo-caixa" element={<CashFlowPage />} />
-              <Route path="/app/financeiro/alertas" element={<FinanceAlertsPage />} />
-              <Route path="/app/relatorios" element={<ReportsHomePage />} />
-              <Route path="/app/relatorios/estoque/posicao" element={<ReportStockPositionPage />} />
-              <Route path="/app/relatorios/estoque/movimentos" element={<ReportStockMovementsPage />} />
-              <Route path="/app/relatorios/estoque/abaixo-minimo" element={<ReportStockLowPage />} />
-              <Route path="/app/relatorios/financeiro/em-aberto" element={<ReportFinanceOpenPage />} />
-              <Route path="/app/relatorios/financeiro/fluxo" element={<ReportFinanceCashFlowReportPage />} />
-              <Route path="/app/relatorios/financeiro/envelhecimento" element={<ReportFinanceAgingPage />} />
+              <Route path="/app/cadastros/categorias" element={<CategoriasPage />} />
+              <Route path="/app/cadastros/fornecedores" element={<FornecedoresPage />} />
+              <Route path="/app/cadastros/clientes" element={<ClientesPage />} />
+              <Route path="/app/cadastros/produtos" element={<ProdutosPage />} />
+              <Route path="/app/estoque/saldos" element={<SaldosEstoquePage />} />
+              <Route path="/app/estoque/entradas-compra" element={<EntradaCompraPage />} />
+              <Route path="/app/estoque/saidas" element={<SaidasEstoquePage />} />
+              <Route path="/app/estoque/movimentos" element={<MovimentacoesEstoquePage />} />
+              <Route path="/app/estoque/alertas" element={<AlertasEstoquePage />} />
+              <Route path="/app/estoque/receitas" element={<ReceitasPage />} />
+              <Route path="/app/estoque/producao" element={<OrdensProducaoPage />} />
+              <Route path="/app/estoque/producao/:id" element={<DetalheOrdemProducaoPage />} />
+              <Route path="/app/financeiro/pagar" element={<ContasPagarPage />} />
+              <Route path="/app/financeiro/receber" element={<ContasReceberPage />} />
+              <Route path="/app/financeiro/documentos" element={<DocumentosFinanceirosPage />} />
+              <Route path="/app/financeiro/fluxo-caixa" element={<FluxoCaixaPage />} />
+              <Route path="/app/financeiro/alertas" element={<AlertasFinanceirosPage />} />
+              <Route path="/app/relatorios" element={<RelatoriosInicioPage />} />
+              <Route path="/app/relatorios/estoque/posicao" element={<RelatorioPosicaoEstoquePage />} />
+              <Route path="/app/relatorios/estoque/movimentos" element={<RelatorioMovimentacoesEstoquePage />} />
+              <Route path="/app/relatorios/estoque/abaixo-minimo" element={<RelatorioEstoqueAbaixoMinimoPage />} />
+              <Route path="/app/relatorios/financeiro/em-aberto" element={<RelatorioContasAbertoPage />} />
+              <Route path="/app/relatorios/financeiro/fluxo" element={<RelatorioFluxoCaixaPage />} />
+              <Route path="/app/relatorios/financeiro/envelhecimento" element={<RelatorioEnvelhecimentoPage />} />
               <Route
                 path="/app/relatorios/financeiro/receita-produto"
-                element={<ReportRevenueByProductPage />}
+                element={<RelatorioReceitaPorProdutoPage />}
               />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        </AuthProvider>
+        </ProvedorAutenticacao>
       </ToastProvider>
     </BrowserRouter>
   );

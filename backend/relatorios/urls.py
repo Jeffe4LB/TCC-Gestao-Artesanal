@@ -1,0 +1,61 @@
+from django.urls import path
+
+from .views import (
+    RelatorioEnvelhecimentoFinanceiroView,
+    RelatorioEstoqueAbaixoMinimoView,
+    RelatorioEstoquePorCategoriaView,
+    RelatorioFinanceiroEmAbertoView,
+    RelatorioFluxoCaixaView,
+    RelatorioFluxoMensalView,
+    RelatorioMovimentacoesEstoqueView,
+    RelatorioPosicaoEstoqueView,
+    RelatorioReceitaPorProdutoView,
+)
+
+urlpatterns = [
+    path(
+        "relatorios/estoque/posicao/",
+        RelatorioPosicaoEstoqueView.as_view(),
+        name="relatorio-estoque-posicao",
+    ),
+    path(
+        "relatorios/estoque/movimentacoes/",
+        RelatorioMovimentacoesEstoqueView.as_view(),
+        name="relatorio-estoque-movimentacoes",
+    ),
+    path(
+        "relatorios/estoque/abaixo-minimo/",
+        RelatorioEstoqueAbaixoMinimoView.as_view(),
+        name="relatorio-estoque-abaixo-minimo",
+    ),
+    path(
+        "relatorios/estoque/por-categoria/",
+        RelatorioEstoquePorCategoriaView.as_view(),
+        name="relatorio-estoque-por-categoria",
+    ),
+    path(
+        "relatorios/financeiro/em-aberto/",
+        RelatorioFinanceiroEmAbertoView.as_view(),
+        name="relatorio-financeiro-em-aberto",
+    ),
+    path(
+        "relatorios/financeiro/fluxo-caixa/",
+        RelatorioFluxoCaixaView.as_view(),
+        name="relatorio-financeiro-fluxo-caixa",
+    ),
+    path(
+        "relatorios/financeiro/fluxo-mensal/",
+        RelatorioFluxoMensalView.as_view(),
+        name="relatorio-financeiro-fluxo-mensal",
+    ),
+    path(
+        "relatorios/financeiro/envelhecimento/",
+        RelatorioEnvelhecimentoFinanceiroView.as_view(),
+        name="relatorio-financeiro-envelhecimento",
+    ),
+    path(
+        "relatorios/financeiro/receita-por-produto/",
+        RelatorioReceitaPorProdutoView.as_view(),
+        name="relatorio-financeiro-receita-por-produto",
+    ),
+]

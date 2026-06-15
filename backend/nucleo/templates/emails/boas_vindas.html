@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Bem-vindo ao Gestão Artesanal</title>
+</head>
+<body style="font-family: system-ui, sans-serif; line-height: 1.5; color: #222;">
+  <p>Olá, <strong>{{ nome }}</strong>,</p>
+  <p>Foi criada uma conta para você no <strong>Gestão Artesanal</strong>.</p>
+  <p>
+    <a href="{{ login_url }}" style="display:inline-block;padding:10px 16px;background:#1677ff;color:#fff;text-decoration:none;border-radius:6px;">
+      Acessar o sistema
+    </a>
+  </p>
+  <p style="font-size: 14px; color: #555;">
+    <strong>E-mail:</strong> {{ email }}<br />
+    <strong>Senha temporária:</strong> {{ senha_temporaria }}
+  </p>
+  <p style="font-size: 14px; color: #555;">
+    Por segurança, você precisará definir uma nova senha no primeiro acesso.
+  </p>
+  {% if debug %}
+  <p style="font-size: 13px; color: #888; border-top: 1px solid #eee; padding-top: 12px;">
+    <strong>Desenvolvimento:</strong> o link usa <code>FRONTEND_URL</code>. Inicie o front com
+    <code>npm run dev</code> antes de acessar.
+  </p>
+  {% endif %}
+</body>
+</html>

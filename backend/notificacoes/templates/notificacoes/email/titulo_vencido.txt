@@ -1,0 +1,16 @@
+Gestão Artesanal — {{ rotulo_titulo }} vencida
+
+Olá{% if usuario.first_name %}, {{ usuario.first_name }}{% endif %}!
+
+{% if dias_diff < 0 %}Uma {{ rotulo_titulo|lower }} venceu há {{ dias_diff|stringformat:"d"|cut:"-" }} dia(s).{% else %}Uma {{ rotulo_titulo|lower }} vence hoje.{% endif %}
+
+  - Descrição:  {{ conta.descricao }}
+  - Valor:      R$ {{ conta.valor }}
+  - Vencimento: {{ conta.vencimento|date:"d/m/Y" }}
+
+Por favor, regularize esta pendência no sistema o quanto antes.
+
+{% if link_sistema %}Acesse o sistema: {{ link_sistema }}{% endif %}
+
+—
+Este é um e-mail automático enviado pelo sistema Gestão Artesanal.

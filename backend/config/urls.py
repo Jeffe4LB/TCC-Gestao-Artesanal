@@ -3,11 +3,11 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/", include("core.urls")),
-    path("api/v1/", include("products.urls")),
-    path("api/v1/", include("customers.urls")),
-    path("api/v1/", include("stock.urls")),
-    path("api/v1/", include("finance.urls")),
-    path("api/v1/", include("reports.urls")),
-    path("api/v1/", include("notifications.urls")),
+    path("api/v1/", include("nucleo.urls")),
+    path("api/v1/", include("produtos.urls")),
+    path("api/v1/", include("clientes.urls")),
+    path("api/v1/", include("estoque.urls")),
+    path("api/v1/", include("financeiro.urls")),
+    path("api/v1/", include("relatorios.urls")),
+    path("api/v1/", include("notificacoes.urls")),
 ]

@@ -11,11 +11,11 @@ import {
 import { Badge, Button, Grid, Layout, Menu, theme, Tooltip, type MenuProps } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import { ROLE_LABELS } from "../../types/auth";
-import { useFinanceOverdueCount } from "../../hooks/useFinanceOverdueCount";
-import { useStockAlertCount } from "../../hooks/useStockAlertCount";
-import { HeaderNotifications } from "./HeaderNotifications";
+import { useAutenticacao } from "../../hooks/useAutenticacao";
+import { ROTULOS_PAPEL } from "../../types/autenticacao";
+import { useContagemFinanceiroVencido } from "../../hooks/useContagemFinanceiroVencido";
+import { useContagemAlertaEstoque } from "../../hooks/useContagemAlertaEstoque";
+import { CabecalhoNotificacoes } from "./CabecalhoNotificacoes";
 import logo from "../../assets/logo.png";
 
 const { Header, Sider, Content } = Layout;
@@ -32,10 +32,10 @@ function item(
 }
 
 export function AppLayout() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAutenticacao();
   const location = useLocation();
-  const stockAlerts = useStockAlertCount();
-  const financeOverdue = useFinanceOverdueCount();
+  const stockAlerts = useContagemAlertaEstoque();
+  const financeOverdue = useContagemFinanceiroVencido();
   const { token } = theme.useToken();
   const screens = Grid.useBreakpoint();
   const headerCompact = !screens.md;
@@ -62,24 +62,24 @@ export function AppLayout() {
   }, [pathOpenKeys]);
 
   const menuItems: MenuItem[] = useMemo(() => {
-    const c = user?.capabilities;
+    const c = user?.capacidades;
     if (!c) return [];
 
     const items: MenuItem[] = [
       item("home", <Link to="/app">Início</Link>, <HomeOutlined />),
     ];
 
-    if (c.dashboard) {
+    if (c.painel) {
       items.push(
         item(
           "dashboard",
-          <Link to="/app/dashboard">Dashboard</Link>,
+          <Link to="/app/dashboard">Painel</Link>,
           <DashboardOutlined />,
         ),
       );
     }
 
-    if (c.master_data) {
+    if (c.dados_mestres) {
       items.push(
         item("cadastros", "Cadastros", <TagsOutlined />, [
           item("cat", <Link to="/app/cadastros/categorias">Categorias</Link>),
@@ -91,17 +91,25 @@ export function AppLayout() {
     }
 
     const estChildren: MenuItem[] = [];
-    if (c.stock_read) {
+    if (c.estoque_leitura) {
       estChildren.push(item("bal", <Link to="/app/estoque/saldos">Saldos</Link>));
     }
-    if (c.stock_movements) {
+    if (c.estoque_movimentacoes) {
+      estChildren.push(
+        item("ent", <Link to="/app/estoque/entradas-compra">Entrada de compra</Link>),
+      );
+    }
+    if (c.estoque_leitura) {
+      estChildren.push(item("sai", <Link to="/app/estoque/saidas">Saídas</Link>));
+    }
+    if (c.estoque_movimentacoes) {
       estChildren.push(item("mov", <Link to="/app/estoque/movimentos">Movimentos</Link>));
     }
-    if (c.recipes_production) {
+    if (c.receitas_producao) {
       estChildren.push(item("rec", <Link to="/app/estoque/receitas">Receitas</Link>));
       estChildren.push(item("pr", <Link to="/app/estoque/producao">Produção</Link>));
     }
-    if (c.stock_read) {
+    if (c.estoque_leitura) {
       estChildren.push(
         item(
           "al-link",
@@ -125,9 +133,12 @@ export function AppLayout() {
     }
 
     const finChildren: MenuItem[] = [];
-    if (c.finance) {
+    if (c.financeiro) {
       finChildren.push(item("ap", <Link to="/app/financeiro/pagar">Contas a pagar</Link>));
       finChildren.push(item("ar", <Link to="/app/financeiro/receber">Contas a receber</Link>));
+      finChildren.push(
+        item("doc", <Link to="/app/financeiro/documentos">Documentos parcelados</Link>),
+      );
       finChildren.push(item("cf", <Link to="/app/financeiro/fluxo-caixa">Fluxo de caixa</Link>));
       finChildren.push(
         item(
@@ -151,7 +162,7 @@ export function AppLayout() {
       items.push(item("financeiro", "Financeiro", <DollarOutlined />, finChildren));
     }
 
-    if (c.reports) {
+    if (c.relatorios) {
       items.push(
         item(
           "relatorios",
@@ -161,7 +172,7 @@ export function AppLayout() {
       );
     }
 
-    if (c.manage_users) {
+    if (c.gerenciar_usuarios) {
       items.push(
         item("admin", "Administração", <TeamOutlined />, [
           item(
@@ -190,6 +201,7 @@ export function AppLayout() {
     if (p.startsWith("/app/estoque/alertas")) return ["al-link"];
     if (p.startsWith("/app/financeiro/pagar")) return ["ap"];
     if (p.startsWith("/app/financeiro/receber")) return ["ar"];
+    if (p.startsWith("/app/financeiro/documentos")) return ["doc"];
     if (p.startsWith("/app/financeiro/fluxo-caixa")) return ["cf"];
     if (p.startsWith("/app/financeiro/alertas")) return ["fa-link"];
     if (p.startsWith("/app/relatorios")) return ["relatorios"];
@@ -268,7 +280,7 @@ export function AppLayout() {
               maxWidth: headerTight ? "100%" : undefined,
             }}
           >
-            <HeaderNotifications stockAlertCount={stockAlerts} financeOverdueCount={financeOverdue} />
+            <CabecalhoNotificacoes stockAlertCount={stockAlerts} financeOverdueCount={financeOverdue} />
             <span
               style={{
                 color: token.colorTextSecondary,
@@ -281,19 +293,19 @@ export function AppLayout() {
               }}
               title={
                 user?.username
-                  ? `${user.username}${user.role ? ` (${ROLE_LABELS[user.role]})` : ""}`
+                  ? `${user.username}${user.papel ? ` (${ROTULOS_PAPEL[user.papel]})` : ""}`
                   : undefined
               }
             >
               {user?.username}
-              {user?.role && !headerTight ? (
+              {user?.papel && !headerTight ? (
                 <span style={{ marginLeft: 8, opacity: 0.85 }}>
-                  ({ROLE_LABELS[user.role]})
+                  ({ROTULOS_PAPEL[user.papel]})
                 </span>
               ) : null}
-              {user?.role && headerTight ? (
+              {user?.papel && headerTight ? (
                 <span style={{ marginLeft: 6, opacity: 0.85 }}>
-                  · {ROLE_LABELS[user.role]}
+                  · {ROTULOS_PAPEL[user.papel]}
                 </span>
               ) : null}
             </span>
