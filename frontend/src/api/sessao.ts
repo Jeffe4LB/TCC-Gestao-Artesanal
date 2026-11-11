@@ -1,6 +1,6 @@
 import { AUTH_TOKENS_CLEARED_EVENT } from "../constants/eventosAutenticacao";
+import { API_PREFIX } from "./base";
 
-const API = "/api/v1";
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
 export function getAccessToken(): string | null {
@@ -29,7 +29,7 @@ export function clearTokens(): void {
 }
 
 export async function login(username: string, password: string): Promise<void> {
-  const r = await fetch(`${API}/auth/token/`, {
+  const r = await fetch(`${API_PREFIX}/auth/token/`, {
     method: "POST",
     headers: JSON_HEADERS,
     body: JSON.stringify({ username, password }),
@@ -46,7 +46,7 @@ export async function login(username: string, password: string): Promise<void> {
 export async function tryRefreshToken(): Promise<boolean> {
   const refresh = getRefreshToken();
   if (!refresh) return false;
-  const r = await fetch(`${API}/auth/token/refresh/`, {
+  const r = await fetch(`${API_PREFIX}/auth/token/refresh/`, {
     method: "POST",
     headers: JSON_HEADERS,
     body: JSON.stringify({ refresh }),

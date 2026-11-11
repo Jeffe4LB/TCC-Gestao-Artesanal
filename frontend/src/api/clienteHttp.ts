@@ -1,12 +1,8 @@
+import { apiUrl } from "./base";
 import { clearTokens, getAccessToken, tryRefreshToken } from "./sessao";
 
-const API_PREFIX = "/api/v1";
-
 function joinUrl(path: string): string {
-  if (path.startsWith("http")) return path;
-  if (path.startsWith("/api/v1")) return path;
-  const p = path.startsWith("/") ? path : `/${path}`;
-  return `${API_PREFIX}${p}`;
+  return apiUrl(path);
 }
 
 /** Rotas que não devem enviar Bearer (token inválido geraria 401 antes do AllowAny). */
