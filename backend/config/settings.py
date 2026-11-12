@@ -45,6 +45,7 @@ _MGMT_SAFE_COMMANDS = {
     "check",
     "shell",
     "createsuperuser",
+    "garantir_superusuario",
     "loaddata",
     "dumpdata",
     "listar_usuarios_auth",
